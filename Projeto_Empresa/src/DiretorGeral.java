@@ -2,6 +2,8 @@ public class DiretorGeral extends Funcionario{
     public String departamento, formacao;
     public int tempoServico;
 
+
+
     public String getDepartamento() {
         return departamento;
     }
@@ -24,5 +26,11 @@ public class DiretorGeral extends Funcionario{
 
     public void setTempoServico(int tempoServico) {
         this.tempoServico = tempoServico;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Departamento: Direção geral" + super.toString();
     }
 }

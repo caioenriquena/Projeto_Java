@@ -1,6 +1,11 @@
 public class Funcionario {
     private String nome, cpf, endereco, email, telefone, cargo;
-    private Double salario, matricula, bruto;
+    private double salario, bruto;
+    private int matricula;
+
+
+    public Funcionario() {
+    }
 
     public String getCargo() {
         return cargo;
@@ -10,11 +15,11 @@ public class Funcionario {
         this.cargo = cargo;
     }
 
-    public Double getBruto() {
+    public double getBruto() {
         return bruto;
     }
 
-    public void setBruto(Double bruto) {
+    public void setBruto(double bruto) {
         this.bruto = bruto;
     }
 
@@ -58,23 +63,37 @@ public class Funcionario {
         this.telefone = telefone;
     }
 
-    public Double getSalario() {
+    public double getSalario() {
         return salario;
     }
 
-    public void setSalario(Double salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
-    public Double getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Double matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 
     public void calcularSalario(){
         salario = bruto - (bruto * 0.11);
+    }
+
+    @Override
+    public String toString() {
+        return
+                "\nCargo: " + cargo +
+                "\nNome: " + nome +
+                "\nCpf: " + cpf +
+                "\nEndereco: " + endereco +
+                "\nEmail: " + email +
+                "\nTelefone: " + telefone +
+                "\nMatricula: " + matricula +
+                "\nSalário: " + salario;
+
     }
 }
