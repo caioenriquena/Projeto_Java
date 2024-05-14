@@ -79,8 +79,8 @@ public class Funcionario {
         this.matricula = matricula;
     }
 
-    public void calcularSalario(){
-        salario = bruto - (bruto * 0.11);
+    public double calcularSalario(){
+        return salario = bruto - (bruto * 0.11);
     }
 
     @Override

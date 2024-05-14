@@ -1,5 +1,19 @@
-public class Midia extends Funcionario{
+import java.util.ArrayList;
+import java.util.List;
 
+public class Midia extends Funcionario{
+    private List<Funcionario> funcionarios;
+
+    public List<Funcionario> getFuncionarios() {
+        if(funcionarios == null){
+            funcionarios = new ArrayList<Funcionario>();
+        }
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
     @Override
     public String toString() {
         return "Departamento: Mídia" + super.toString();
