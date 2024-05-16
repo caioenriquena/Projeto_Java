@@ -1,7 +1,9 @@
+import java.util.Objects;
+
 public class Funcionario {
     private String nome, cpf, endereco, email, telefone, cargo;
     private double salario, bruto;
-    private int matricula;
+    private String matricula;
 
 
     public Funcionario() {
@@ -71,11 +73,11 @@ public class Funcionario {
         this.salario = salario;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -95,5 +97,12 @@ public class Funcionario {
                 "\nMatricula: " + matricula +
                 "\nSalário: " + salario;
 
+    }
+
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, cpf, matricula);
     }
 }

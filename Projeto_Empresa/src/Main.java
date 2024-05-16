@@ -1,20 +1,62 @@
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
 
+    exibirMenuPrincipal();
+
+    }
+
+    public static void exibirMenuPrincipal() {
         Scanner input = new Scanner(System.in);
         String repetir;
         OperacoesFuncionario operacoesFuncionario = new OperacoesFuncionario();
-
         do{
+            System.out.println("=====MENU PRINCIPAL=====");
+            System.out.println("Escolha a opção:");
+            System.out.println("1 - Cadastrar, 2 - Listar, 3 - Folha de Pagamento, 0 - Encerrar");
+            int opcaoPrincipal = input.nextInt();
+            input.nextLine();
+
+
+            switch (opcaoPrincipal) {
+                case 1:
+                    cadastrarFuncionarios(input, operacoesFuncionario);
+                    break;
+                case 2:
+                    operacoesFuncionario.listaGeral();
+                    break;
+                case 3:
+                    // Lógica para folha de pagamento
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+
+            System.out.println("Deseja repetir? S ou N: ");
+            repetir = input.nextLine();
+        }while(repetir.equalsIgnoreCase("S"));
+
+    }
+
+
+
+
+    private static void cadastrarFuncionarios(Scanner input, OperacoesFuncionario operacoesFuncionario) {
+        String repetir;
+
+        do {
 
             System.out.println("=====CADASTRO DE FUNCIONÁRIOS=====");
             System.out.println("Escolha o departamento:");
-            System.out.println("1 - Administração, 2 - Atendimento, 3 - Direção geral, 4 - Mídia");
+            System.out.println("1 - Administração, 2 - Atendimento, 3 - Direção geral, 4 - Mídia, 5 - Voltar, 0 - Encerrar");
             int opcao = input.nextInt();
             input.nextLine();
-            switch (opcao){
+            switch (opcao) {
 
                 case 1:
                     cadastroAdmin(input, operacoesFuncionario);
@@ -22,7 +64,7 @@ public class Main {
                     break;
 
                 case 2:
-                    cadastroAtendimento(input,operacoesFuncionario);
+                    cadastroAtendimento(input, operacoesFuncionario);
                     break;
 
                 case 3:
@@ -32,7 +74,12 @@ public class Main {
                 case 4:
                     cadastroMidia(input, operacoesFuncionario);
                     break;
-
+                case 5:
+                    exibirMenuPrincipal();
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
                 default:
                     System.out.println("Opção inválida!");
                     break;
@@ -40,9 +87,8 @@ public class Main {
             System.out.println("Deseja repetir? S ou N: ");
             repetir = input.nextLine();
 
-        }while(repetir.equalsIgnoreCase("S"));
+        } while (repetir.equalsIgnoreCase("S"));
 
-        operacoesFuncionario.listaGeral();
     }
 
     private static void cadastroMidia(Scanner input, OperacoesFuncionario operacoesFuncionario) {
@@ -53,19 +99,18 @@ public class Main {
         input.nextLine();
         if(op2== 1){
             funcionario.setCargo("Diretor de Mídia");
-            funcionario.setSalario(6500.00);
+            funcionario.setBruto(6500.00);
         }else if(op2 == 2){
             funcionario.setCargo("Planejador de Mídia");
-            funcionario.setSalario(4500.00);
+            funcionario.setBruto(4500.00);
         }else if(op2 == 3){
             funcionario.setCargo("Comprador de Mídia");
-            funcionario.setSalario(4000.00);
+            funcionario.setBruto(4000.00);
         }
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
         System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextInt());
-        input.nextLine();
+        funcionario.setMatricula(input.nextLine());
         System.out.println("Digite o CPF: ");
         funcionario.setCpf(input.nextLine());
         System.out.println("Digite o endereço: ");
@@ -80,13 +125,12 @@ public class Main {
     private static void cadastroDirecao(Scanner input, OperacoesFuncionario operacoesFuncionario) {
         System.out.println("==DIREÇÃO GERAL==");
         Funcionario funcionario = new Funcionario();
-        funcionario.setSalario(10000.00);
+        funcionario.setBruto(10000.00);
         funcionario.setCargo("Diretor Geral");
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
         System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextInt());
-        input.nextLine();
+        funcionario.setMatricula(input.nextLine());
         System.out.println("Digite o CPF: ");
         funcionario.setCpf(input.nextLine());
         System.out.println("Digite o endereço: ");
@@ -107,16 +151,15 @@ public class Main {
         input.nextLine();
         if(op1== 1){
             funcionario.setCargo("Diretor de Atendimento");
-            funcionario.setSalario(6000.00);
+            funcionario.setBruto(6000.00);
         }else if(op1 == 2){
             funcionario.setCargo("Atendimento ao cliente");
-            funcionario.setSalario(3500.00);
+            funcionario.setBruto(3500.00);
         }
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
         System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextInt());
-        input.nextLine();
+        funcionario.setMatricula(input.nextLine());
         System.out.println("Digite o CPF: ");
         funcionario.setCpf(input.nextLine());
         System.out.println("Digite o endereço: ");
@@ -145,8 +188,7 @@ public class Main {
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
         System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextInt());
-        input.nextLine();
+        funcionario.setMatricula(input.nextLine());
         System.out.println("Digite o CPF: ");
         funcionario.setCpf(input.nextLine());
         System.out.println("Digite o endereço: ");
