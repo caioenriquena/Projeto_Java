@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +11,7 @@ public class Main {
 
     public static void exibirMenuPrincipal() {
         Scanner input = new Scanner(System.in);
-        String repetir;
+        String repetir = "S";
         OperacoesFuncionario operacoesFuncionario = new OperacoesFuncionario();
         do{
             System.out.println("=====MENU PRINCIPAL=====");
@@ -21,8 +22,11 @@ public class Main {
 
 
             switch (opcaoPrincipal) {
+
                 case 1:
+
                     cadastrarFuncionarios(input, operacoesFuncionario);
+
                     break;
                 case 2:
                     operacoesFuncionario.listaGeral();
@@ -37,8 +41,8 @@ public class Main {
                     break;
             }
 
-            System.out.println("Deseja repetir? S ou N: ");
-            repetir = input.nextLine();
+
+
         }while(repetir.equalsIgnoreCase("S"));
 
     }
@@ -47,7 +51,7 @@ public class Main {
 
 
     private static void cadastrarFuncionarios(Scanner input, OperacoesFuncionario operacoesFuncionario) {
-        String repetir;
+        String escolha = "s";
 
         do {
 
@@ -85,9 +89,10 @@ public class Main {
                     break;
             }
             System.out.println("Deseja repetir? S ou N: ");
-            repetir = input.nextLine();
+            escolha = input.nextLine();
 
-        } while (repetir.equalsIgnoreCase("S"));
+
+        } while (escolha.equalsIgnoreCase("S"));
 
     }
 
@@ -178,7 +183,7 @@ public class Main {
         input.nextLine();
         Funcionario funcionario = new Funcionario();
         if(op == 1){
-            funcionario.setCargo("Gerente Administratvo");
+            funcionario.setCargo("Gerente Administrativo");
             funcionario.setBruto(5000.00);
             funcionario.calcularSalario();
         }else if(op == 2){

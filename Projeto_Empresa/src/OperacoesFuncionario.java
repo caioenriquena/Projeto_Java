@@ -47,26 +47,41 @@ public class OperacoesFuncionario {
 
     public void listaGeral() {
         try {
-            System.out.println("\nDepartamento: Administração");
 
-            for (Funcionario f : administracao.getFuncionarios()) {
-                System.out.println(f);
-                System.out.println("*".repeat(30));
+            if (administracao != null && administracao.getFuncionarios() != null) {
+
+                System.out.println("\nDepartamento: Administração");
+
+                for (Funcionario f : administracao.getFuncionarios()) {
+                    System.out.println(f);
+                    System.out.println("*".repeat(30));
+                }
             }
-            System.out.println("\nDepartamento: Atendimento");
-            for (Funcionario f : atendimento.getFuncionarios()) {
-                System.out.println(f);
-                System.out.println("*".repeat(30));
+
+            if (atendimento != null && atendimento.getFuncionarios() != null) {
+                System.out.println("\nDepartamento: Atendimento");
+                for (Funcionario f : atendimento.getFuncionarios()) {
+                    System.out.println(f);
+                    System.out.println("*".repeat(30));
+                }
+
             }
-            System.out.println("\nDepartamento: Direção Geral");
-            for (Funcionario f : diretorGeral.getFuncionarios()) {
-                System.out.println(f);
-                System.out.println("*".repeat(30));
+
+            if (diretorGeral != null && diretorGeral.getFuncionarios() != null ) {
+                System.out.println("\nDepartamento: Direção Geral");
+                for (Funcionario f : diretorGeral.getFuncionarios()) {
+                    System.out.println(f);
+                    System.out.println("*".repeat(30));
+                }
             }
-            System.out.println("\nDepartamento: Mídia");
-            for (Funcionario f : midia.getFuncionarios()) {
-                System.out.println(f);
-                System.out.println("*".repeat(30));
+
+            if (midia != null && midia.getFuncionarios() != null) {
+                System.out.println("\nDepartamento: Mídia");
+                for (Funcionario f : midia.getFuncionarios()) {
+                    System.out.println(f);
+                    System.out.println("*".repeat(30));
+                }
+
             }
         }catch (NullPointerException e ) {
             System.out.println("Departamento vazio");

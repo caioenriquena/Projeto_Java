@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiretorGeral extends Funcionario{
+public class DiretorGeral {
 
     private List<Funcionario> funcionarios;
 

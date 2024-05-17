@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Midia extends Funcionario{
+public class Midia{
     private List<Funcionario> funcionarios;
 
     public List<Funcionario> getFuncionarios() {
