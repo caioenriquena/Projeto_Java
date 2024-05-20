@@ -7,16 +7,10 @@ public class OperacoesFuncionario {
     private DiretorGeral diretorGeral;
     private Midia midia;
 
-    private List<Double> salariosAdmin;
-    private List<Double> salariosAtendimento;
-    private List<Double> salariosDirecao;
-    private List<Double> salariosMidia;
+
 
     public OperacoesFuncionario() {
-        salariosAdmin = new ArrayList<>();
-        salariosAtendimento = new ArrayList<>();
-        salariosDirecao = new ArrayList<>();
-        salariosMidia = new ArrayList<>();
+
     }
 
     public void cadastrarAdmin(Funcionario funcionario) {
@@ -24,7 +18,6 @@ public class OperacoesFuncionario {
             administracao = new Administracao();
         }
         administracao.getFuncionarios().add(funcionario);
-        salariosAdmin.add(funcionario.calcularSalarioLiquido());
         System.out.println("Funcionário cadastrado com sucesso no departamento de Administração!");
     }
 
@@ -33,7 +26,6 @@ public class OperacoesFuncionario {
             atendimento = new Atendimento();
         }
         atendimento.getFuncionarios().add(funcionario);
-        salariosAtendimento.add(funcionario.calcularSalarioLiquido());
         System.out.println("Funcionário cadastrado com sucesso no departamento de Atendimento!");
     }
 
@@ -42,7 +34,6 @@ public class OperacoesFuncionario {
             diretorGeral = new DiretorGeral();
         }
         diretorGeral.getFuncionarios().add(funcionario);
-        salariosDirecao.add(funcionario.calcularSalarioLiquido());
         System.out.println("Funcionário cadastrado com sucesso no departamento de Direção Geral!");
     }
 
@@ -51,38 +42,57 @@ public class OperacoesFuncionario {
             midia = new Midia();
         }
         midia.getFuncionarios().add(funcionario);
-        salariosMidia.add(funcionario.calcularSalarioLiquido());
         System.out.println("Funcionário cadastrado com sucesso no departamento de Mídia!");
     }
     public void listarSalariosPorDepartamento() {
-        System.out.println("Salários por Departamento:");
+        System.out.println("===Folha de Pagamento===");
 
-        if (administracao != null) {
-            System.out.println("Administração:");
-            for (Double salario : salariosAdmin) {
-                System.out.println(salario);
-            }
-        }
+        try {
+            if (administracao != null && administracao.getFuncionarios() != null) {
 
-        if (atendimento != null) {
-            System.out.println("Atendimento:");
-            for (Double salario : salariosAtendimento) {
-                System.out.println(salario);
+                for (Funcionario f : administracao.getFuncionarios()) {
+                    System.out.println("Departamento: " + Departamentos.ADMINISTRACAO);
+                    System.out.println("Funcionario: " + f.getNome());
+                    System.out.println("Matrícula: " + f.getMatricula());
+                    System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
+                    System.out.println("*".repeat(30));
+                }
             }
-        }
 
-        if (diretorGeral != null) {
-            System.out.println("Direção Geral:");
-            for (Double salario : salariosDirecao) {
-                System.out.println(salario);
-            }
-        }
+            if (atendimento != null && atendimento.getFuncionarios() != null) {
 
-        if (midia != null) {
-            System.out.println("Mídia:");
-            for (Double salario : salariosMidia) {
-                System.out.println(salario);
+                for (Funcionario f : atendimento.getFuncionarios()) {
+                    System.out.println("Departamento: " + Departamentos.ATENDIMENTO);
+                    System.out.println("Funcionario: " + f.getNome());
+                    System.out.println("Matrícula: " + f.getMatricula());
+                    System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
+                    System.out.println("*".repeat(30));
+                }
             }
+
+            if (diretorGeral != null && diretorGeral.getFuncionarios() != null) {
+
+                for (Funcionario f : diretorGeral.getFuncionarios()) {
+                    System.out.println("Departamento: " + Departamentos.DIRECAOGERAL);
+                    System.out.println("Funcionario: " + f.getNome());
+                    System.out.println("Matrícula: " + f.getMatricula());
+                    System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
+                    System.out.println("*".repeat(30));
+                }
+            }
+
+            if (midia != null && midia.getFuncionarios() != null) {
+
+                for (Funcionario f : midia.getFuncionarios()) {
+                    System.out.println("Departamento: " + Departamentos.MIDIA);
+                    System.out.println("Funcionario: " + f.getNome());
+                    System.out.println("Matrícula: " + f.getMatricula());
+                    System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
+                    System.out.println("*".repeat(30));
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Departamento vazio");
         }
     }
 
