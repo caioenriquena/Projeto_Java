@@ -7,6 +7,8 @@ public class Administracao {
 
     private List<Funcionario> funcionarios;
 
+
+
     public List<Funcionario> getFuncionarios() {
 
         if(funcionarios == null){
@@ -18,6 +20,10 @@ public class Administracao {
     public void setFuncionarios(List<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
+
+
+
+
 
     @Override
     public String toString() {

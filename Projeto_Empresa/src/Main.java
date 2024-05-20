@@ -32,7 +32,7 @@ public class Main {
                     operacoesFuncionario.listaGeral();
                     break;
                 case 3:
-                    // Lógica para folha de pagamento
+                    operacoesFuncionario.listarSalariosPorDepartamento();
                     break;
                 case 0:
                     return;
@@ -105,12 +105,15 @@ public class Main {
         if(op2== 1){
             funcionario.setCargo("Diretor de Mídia");
             funcionario.setBruto(6500.00);
+            funcionario.calcularSalarioLiquido();
         }else if(op2 == 2){
             funcionario.setCargo("Planejador de Mídia");
             funcionario.setBruto(4500.00);
+            funcionario.calcularSalarioLiquido();
         }else if(op2 == 3){
             funcionario.setCargo("Comprador de Mídia");
             funcionario.setBruto(4000.00);
+            funcionario.calcularSalarioLiquido();
         }
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
@@ -131,6 +134,7 @@ public class Main {
         System.out.println("==DIREÇÃO GERAL==");
         Funcionario funcionario = new Funcionario();
         funcionario.setBruto(10000.00);
+        funcionario.calcularSalarioLiquido();
         funcionario.setCargo("Diretor Geral");
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
@@ -157,9 +161,11 @@ public class Main {
         if(op1== 1){
             funcionario.setCargo("Diretor de Atendimento");
             funcionario.setBruto(6000.00);
+            funcionario.calcularSalarioLiquido();
         }else if(op1 == 2){
             funcionario.setCargo("Atendimento ao cliente");
             funcionario.setBruto(3500.00);
+            funcionario.calcularSalarioLiquido();
         }
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());
@@ -185,10 +191,11 @@ public class Main {
         if(op == 1){
             funcionario.setCargo("Gerente Administrativo");
             funcionario.setBruto(5000.00);
-            funcionario.calcularSalario();
+            funcionario.calcularSalarioLiquido();
         }else if(op == 2){
             funcionario.setCargo("Assistente Administrativo");
             funcionario.setBruto(2500.00);
+            funcionario.calcularSalarioLiquido();
         }
         System.out.println("Digite o nome do funcionário: ");
         funcionario.setNome(input.nextLine());

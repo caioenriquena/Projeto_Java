@@ -81,8 +81,8 @@ public class Funcionario {
         this.matricula = matricula;
     }
 
-    public double calcularSalario(){
-        return salario = bruto - (bruto * 0.11);
+    public double calcularSalarioLiquido(){
+        return bruto - (bruto * 0.11);
     }
 
     @Override
@@ -95,8 +95,8 @@ public class Funcionario {
                 "\nEmail: " + email +
                 "\nTelefone: " + telefone +
                 "\nMatricula: " + matricula +
-                "\nSalário: " + salario;
-
+                "\nSalário: " + bruto +
+                "\nSalário Líquido: " + calcularSalarioLiquido();
     }
 
 
