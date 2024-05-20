@@ -51,7 +51,7 @@ public class OperacoesFuncionario {
             if (administracao != null && administracao.getFuncionarios() != null) {
 
                 for (Funcionario f : administracao.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.ADMINISTRACAO);
+                    System.out.println("Departamento: " + Departamentos.ADMINISTRACAO.getDpto());
                     System.out.println("Funcionario: " + f.getNome());
                     System.out.println("Matrícula: " + f.getMatricula());
                     System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
@@ -62,7 +62,7 @@ public class OperacoesFuncionario {
             if (atendimento != null && atendimento.getFuncionarios() != null) {
 
                 for (Funcionario f : atendimento.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.ATENDIMENTO);
+                    System.out.println("Departamento: " + Departamentos.ATENDIMENTO.getDpto());
                     System.out.println("Funcionario: " + f.getNome());
                     System.out.println("Matrícula: " + f.getMatricula());
                     System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
@@ -73,7 +73,7 @@ public class OperacoesFuncionario {
             if (diretorGeral != null && diretorGeral.getFuncionarios() != null) {
 
                 for (Funcionario f : diretorGeral.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.DIRECAOGERAL);
+                    System.out.println("Departamento: " + Departamentos.DIRECAOGERAL.getDpto());
                     System.out.println("Funcionario: " + f.getNome());
                     System.out.println("Matrícula: " + f.getMatricula());
                     System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
@@ -84,7 +84,7 @@ public class OperacoesFuncionario {
             if (midia != null && midia.getFuncionarios() != null) {
 
                 for (Funcionario f : midia.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.MIDIA);
+                    System.out.println("Departamento: " + Departamentos.MIDIA.getDpto());
                     System.out.println("Funcionario: " + f.getNome());
                     System.out.println("Matrícula: " + f.getMatricula());
                     System.out.println("Salário líquido: R$" + f.calcularSalarioLiquido());
