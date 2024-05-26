@@ -5,6 +5,7 @@ public class Funcionario {
     private double salario, bruto;
     private String matricula;
 
+    private double bonus;
 
     public Funcionario() {
     }
@@ -81,8 +82,16 @@ public class Funcionario {
         this.matricula = matricula;
     }
 
+    public double getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
     public double calcularSalarioLiquido(){
-        return bruto - (bruto * 0.11);
+        return bruto - (bruto * 0.11) + bonus;
     }
 
     @Override
@@ -95,8 +104,10 @@ public class Funcionario {
                 "\nEmail: " + email +
                 "\nTelefone: " + telefone +
                 "\nMatricula: " + matricula +
-                "\nSalário: " + bruto +
-                "\nSalário Líquido: " + calcularSalarioLiquido();
+                "\nSalário Bruto: R$" + bruto +
+                "\nBônus: R$" + bonus +
+                "\nSalário Líquido: R$" + calcularSalarioLiquido();
+
     }
 
 

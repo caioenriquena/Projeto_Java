@@ -29,6 +29,7 @@ public class Main {
 
                     break;
                 case 2:
+                    
                     operacoesFuncionario.listaGeral();
                     break;
                 case 3:
@@ -47,9 +48,6 @@ public class Main {
 
     }
 
-
-
-
     private static void cadastrarFuncionarios(Scanner input, OperacoesFuncionario operacoesFuncionario) {
         String escolha = "s";
 
@@ -63,20 +61,20 @@ public class Main {
             switch (opcao) {
 
                 case 1:
-                    cadastroAdmin(input, operacoesFuncionario);
+                    OperacoesFuncionario.cadastroAdmin(input, operacoesFuncionario);
 
                     break;
 
                 case 2:
-                    cadastroAtendimento(input, operacoesFuncionario);
+                    OperacoesFuncionario.cadastroAtendimento(input, operacoesFuncionario);
                     break;
 
                 case 3:
-                    cadastroDirecao(input, operacoesFuncionario);
+                    OperacoesFuncionario.cadastroDirecao(input, operacoesFuncionario);
                     break;
 
                 case 4:
-                    cadastroMidia(input, operacoesFuncionario);
+                    OperacoesFuncionario.cadastroMidia(input, operacoesFuncionario);
                     break;
                 case 5:
                     exibirMenuPrincipal();
@@ -96,120 +94,6 @@ public class Main {
 
     }
 
-    private static void cadastroMidia(Scanner input, OperacoesFuncionario operacoesFuncionario) {
-        System.out.println("==MÍDIA==");
-        System.out.println("Escolha o cargo do funcionário:\n1 - Diretor de Mídia 2 - Planejador de Mídia 3 - Comprador de Mídia");
-        Funcionario funcionario = new Funcionario();
-        int op2 = input.nextInt();
-        input.nextLine();
-        if(op2== 1){
-            funcionario.setCargo("Diretor de Mídia");
-            funcionario.setBruto(6500.00);
-            funcionario.calcularSalarioLiquido();
-        }else if(op2 == 2){
-            funcionario.setCargo("Planejador de Mídia");
-            funcionario.setBruto(4500.00);
-            funcionario.calcularSalarioLiquido();
-        }else if(op2 == 3){
-            funcionario.setCargo("Comprador de Mídia");
-            funcionario.setBruto(4000.00);
-            funcionario.calcularSalarioLiquido();
-        }
-        System.out.println("Digite o nome do funcionário: ");
-        funcionario.setNome(input.nextLine());
-        System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextLine());
-        System.out.println("Digite o CPF: ");
-        funcionario.setCpf(input.nextLine());
-        System.out.println("Digite o endereço: ");
-        funcionario.setEndereco(input.nextLine());
-        System.out.println("Digite o telefone: ");
-        funcionario.setTelefone(input.nextLine());
-        System.out.println("Digite o email: ");
-        funcionario.setEmail(input.nextLine());
-        operacoesFuncionario.cadastrarDM(funcionario);
-    }
 
-    private static void cadastroDirecao(Scanner input, OperacoesFuncionario operacoesFuncionario) {
-        System.out.println("==DIREÇÃO GERAL==");
-        Funcionario funcionario = new Funcionario();
-        funcionario.setBruto(10000.00);
-        funcionario.calcularSalarioLiquido();
-        funcionario.setCargo("Diretor Geral");
-        System.out.println("Digite o nome do funcionário: ");
-        funcionario.setNome(input.nextLine());
-        System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextLine());
-        System.out.println("Digite o CPF: ");
-        funcionario.setCpf(input.nextLine());
-        System.out.println("Digite o endereço: ");
-        funcionario.setEndereco(input.nextLine());
-        System.out.println("Digite o telefone: ");
-        funcionario.setTelefone(input.nextLine());
-        System.out.println("Digite o email: ");
-        funcionario.setEmail(input.nextLine());
-        operacoesFuncionario.cadastrarDG(funcionario);
-    }
 
-    private static void cadastroAtendimento(Scanner input,OperacoesFuncionario operacoesFuncionario) {
-        System.out.println("==ATENDIMENTO==");
-
-        System.out.println("Escolha o cargo do funcionário:\n1 - Diretor de Atendimento 2 - Atendimento ao cliente");
-        int op1 = input.nextInt();
-        Funcionario funcionario = new Funcionario();
-        input.nextLine();
-        if(op1== 1){
-            funcionario.setCargo("Diretor de Atendimento");
-            funcionario.setBruto(6000.00);
-            funcionario.calcularSalarioLiquido();
-        }else if(op1 == 2){
-            funcionario.setCargo("Atendimento ao cliente");
-            funcionario.setBruto(3500.00);
-            funcionario.calcularSalarioLiquido();
-        }
-        System.out.println("Digite o nome do funcionário: ");
-        funcionario.setNome(input.nextLine());
-        System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextLine());
-        System.out.println("Digite o CPF: ");
-        funcionario.setCpf(input.nextLine());
-        System.out.println("Digite o endereço: ");
-        funcionario.setEndereco(input.nextLine());
-        System.out.println("Digite o telefone: ");
-        funcionario.setTelefone(input.nextLine());
-        System.out.println("Digite o email: ");
-        funcionario.setEmail(input.nextLine());
-        operacoesFuncionario.cadastrarAtendente(funcionario);
-    }
-
-    private static void cadastroAdmin(Scanner input, OperacoesFuncionario cp) {
-        System.out.println("==ADMINISTRAÇÃO==");
-        System.out.println("Escolha o cargo do funcionário:\n1 - Gerente Administratvo 2 - Assitente Administrativo");
-        int op = input.nextInt();
-        input.nextLine();
-        Funcionario funcionario = new Funcionario();
-        if(op == 1){
-            funcionario.setCargo("Gerente Administrativo");
-            funcionario.setBruto(5000.00);
-            funcionario.calcularSalarioLiquido();
-        }else if(op == 2){
-            funcionario.setCargo("Assistente Administrativo");
-            funcionario.setBruto(2500.00);
-            funcionario.calcularSalarioLiquido();
-        }
-        System.out.println("Digite o nome do funcionário: ");
-        funcionario.setNome(input.nextLine());
-        System.out.println("Digite a matrícula: ");
-        funcionario.setMatricula(input.nextLine());
-        System.out.println("Digite o CPF: ");
-        funcionario.setCpf(input.nextLine());
-        System.out.println("Digite o endereço: ");
-        funcionario.setEndereco(input.nextLine());
-        System.out.println("Digite o telefone: ");
-        funcionario.setTelefone(input.nextLine());
-        System.out.println("Digite o email: ");
-        funcionario.setEmail(input.nextLine());
-        cp.cadastrarAdmin(funcionario);
-
-    }
 }
