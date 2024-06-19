@@ -1,149 +1,133 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 
 public class OperacoesFuncionario {
 
-    private Administracao administracao;
-    private Atendimento atendimento;
-    private DiretorGeral diretorGeral;
-    private Midia midia;
+    private List<Funcionario> administracao;
+    private List<Funcionario> atendimento;
+    private List<Funcionario> diretorGeral;
+    private List<Funcionario> midia;
 
-
+    private static final String FILE_PATH = "funcionarios.json";
 
     public OperacoesFuncionario() {
+        administracao = new ArrayList<>();
+        atendimento = new ArrayList<>();
+        diretorGeral = new ArrayList<>();
+        midia = new ArrayList<>();
+        loadFromFile();
 
     }
 
     public void cadastrarAdmin(Funcionario funcionario) {
-        if (administracao == null) {
-            administracao = new Administracao();
-        }
-        administracao.getFuncionarios().add(funcionario);
+        administracao.add(funcionario);
         System.out.println("Funcionário cadastrado com sucesso no departamento de Administração!");
+        salvarParaArquivo();
     }
 
     public void cadastrarAtendente(Funcionario funcionario) {
-        if (atendimento == null) {
-            atendimento = new Atendimento();
-        }
-        atendimento.getFuncionarios().add(funcionario);
+        atendimento.add(funcionario);
         System.out.println("Funcionário cadastrado com sucesso no departamento de Atendimento!");
+        salvarParaArquivo();
     }
 
     public void cadastrarDG(Funcionario funcionario) {
-        if (diretorGeral == null) {
-            diretorGeral = new DiretorGeral();
-        }
-        diretorGeral.getFuncionarios().add(funcionario);
+        diretorGeral.add(funcionario);
         System.out.println("Funcionário cadastrado com sucesso no departamento de Direção Geral!");
+        salvarParaArquivo();
     }
 
     public void cadastrarDM(Funcionario funcionario) {
-        if (midia == null) {
-            midia = new Midia();
-        }
-        midia.getFuncionarios().add(funcionario);
+        midia.add(funcionario);
         System.out.println("Funcionário cadastrado com sucesso no departamento de Mídia!");
+        salvarParaArquivo();
     }
+
     public void listarSalariosPorDepartamento() {
         System.out.println("===Folha de Pagamento===");
+        listarSalarios(administracao, "Administração");
+        listarSalarios(atendimento, "Atendimento");
+        listarSalarios(diretorGeral, "Direção Geral");
+        listarSalarios(midia, "Mídia");
+    }
 
-        try {
-            if (administracao != null && administracao.getFuncionarios() != null) {
-
-                for (Funcionario f : administracao.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.ADMINISTRACAO.getDpto());
-                    System.out.println("Funcionario: " + f.getNome());
-                    System.out.println("Matrícula: " + f.getMatricula());
-                    System.out.println("Salário Bruto: R$" + f.getBruto());
-                    System.out.println("Bônus: R$" + f.getBonus());
-
-                    System.out.println("Salário líquido (Salário bruto - 11% de impostos + Bônus): R$" + f.calcularSalarioLiquido());
-                    System.out.println("*".repeat(30));
-                }
-            }
-
-            if (atendimento != null && atendimento.getFuncionarios() != null) {
-
-                for (Funcionario f : atendimento.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.ATENDIMENTO.getDpto());
-                    System.out.println("Funcionario: " + f.getNome());
-                    System.out.println("Matrícula: " + f.getMatricula());
-                    System.out.println("Salário Bruto: R$" + f.getBruto());
-                    System.out.println("Bônus: R$" + f.getBonus());
-                    System.out.println("Salário líquido (Salário bruto - 11% de impostos + Bônus): R$" + f.calcularSalarioLiquido());
-                    System.out.println("*".repeat(30));
-                }
-            }
-
-            if (diretorGeral != null && diretorGeral.getFuncionarios() != null) {
-
-                for (Funcionario f : diretorGeral.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.DIRECAOGERAL.getDpto());
-                    System.out.println("Funcionario: " + f.getNome());
-                    System.out.println("Matrícula: " + f.getMatricula());
-                    System.out.println("Salário Bruto: R$" + f.getBruto());
-                    System.out.println("Bônus: R$" + f.getBonus());
-                    System.out.println("Salário líquido (Salário bruto - 11% de impostos + Bônus): R$" + f.calcularSalarioLiquido());
-                    System.out.println("*".repeat(30));
-                }
-            }
-
-            if (midia != null && midia.getFuncionarios() != null) {
-
-                for (Funcionario f : midia.getFuncionarios()) {
-                    System.out.println("Departamento: " + Departamentos.MIDIA.getDpto());
-                    System.out.println("Funcionario: " + f.getNome());
-                    System.out.println("Matrícula: " + f.getMatricula());
-                    System.out.println("Salário Bruto: R$" + f.getBruto());
-                    System.out.println("Bônus: R$" + f.getBonus());
-                    System.out.println("Salário líquido (Salário bruto - 11% de impostos + Bônus): R$" + f.calcularSalarioLiquido());
-                    System.out.println("*".repeat(30));
-                }
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Departamento vazio");
+    private void listarSalarios(List<Funcionario> funcionarios, String departamento) {
+        for (Funcionario f : funcionarios) {
+            System.out.println("Departamento: " + departamento);
+            System.out.println("Funcionário: " + f.getNome());
+            System.out.println("Matrícula: " + f.getMatricula());
+            System.out.println("Salário Bruto: R$" + f.getBruto());
+            System.out.println("Bônus: R$" + f.getBonus());
+            System.out.println("Salário líquido (Salário bruto - 11% de impostos + Bônus): R$" + f.calcularSalarioLiquido());
+            System.out.println("*".repeat(30));
         }
     }
 
     public void listaGeral() {
-        try {
-            if (administracao != null && administracao.getFuncionarios() != null) {
-                System.out.println("\nDepartamento: Administração");
-                for (Funcionario f : administracao.getFuncionarios()) {
-                    System.out.println(f);
-                    System.out.println("*".repeat(30));
-                }
-            }
+        listarFuncionarios(administracao, "Administração");
+        listarFuncionarios(atendimento, "Atendimento");
+        listarFuncionarios(diretorGeral, "Direção Geral");
+        listarFuncionarios(midia, "Mídia");
+    }
 
-            if (atendimento != null && atendimento.getFuncionarios() != null) {
-                System.out.println("\nDepartamento: Atendimento");
-                for (Funcionario f : atendimento.getFuncionarios()) {
-                    System.out.println(f);
-                    System.out.println("*".repeat(30));
-                }
+    private void listarFuncionarios(List<Funcionario> funcionarios, String departamento) {
+        if (!funcionarios.isEmpty()) {
+            System.out.println("\nDepartamento: " + departamento);
+            for (Funcionario f : funcionarios) {
+                System.out.println(f);
+                System.out.println("*".repeat(30));
             }
-
-            if (diretorGeral != null && diretorGeral.getFuncionarios() != null) {
-                System.out.println("\nDepartamento: Direção Geral");
-                for (Funcionario f : diretorGeral.getFuncionarios()) {
-                    System.out.println(f);
-                    System.out.println("*".repeat(30));
-                }
-            }
-
-            if (midia != null && midia.getFuncionarios() != null) {
-                System.out.println("\nDepartamento: Mídia");
-                for (Funcionario f : midia.getFuncionarios()) {
-                    System.out.println(f);
-                    System.out.println("*".repeat(30));
-                }
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Departamento vazio");
         }
     }
+
+    public void salvarParaArquivo() {
+        try (FileWriter writer = new FileWriter(FILE_PATH)) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.add("administracao", gson.toJsonTree(administracao));
+            jsonObject.add("atendimento", gson.toJsonTree(atendimento));
+            jsonObject.add("diretorGeral", gson.toJsonTree(diretorGeral));
+            jsonObject.add("midia", gson.toJsonTree(midia));
+            gson.toJson(jsonObject, writer);
+            System.out.println("Dados salvos com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar dados: " + e.getMessage());
+        }
+    }
+
+
+    private void loadFromFile() {
+        try (FileReader reader = new FileReader(FILE_PATH)) {
+            Gson gson = new Gson();
+            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+            Type listType = new TypeToken<List<Funcionario>>() {}.getType();
+
+            administracao = gson.fromJson(jsonObject.get("administracao"), listType);
+            atendimento = gson.fromJson(jsonObject.get("atendimento"), listType);
+            diretorGeral = gson.fromJson(jsonObject.get("diretorGeral"), listType);
+            midia = gson.fromJson(jsonObject.get("midia"), listType);
+
+            if (administracao == null) administracao = new ArrayList<>();
+            if (atendimento == null) atendimento = new ArrayList<>();
+            if (diretorGeral == null) diretorGeral = new ArrayList<>();
+            if (midia == null) midia = new ArrayList<>();
+
+            System.out.println("Dados carregados com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Nenhum dado encontrado para carregar: " + e.getMessage());
+        }
+    }
+
 
     public static void cadastroAdmin(Scanner input, OperacoesFuncionario operacoesFuncionario) {
         System.out.println("==ADMINISTRAÇÃO==");

@@ -1,4 +1,4 @@
-import com.google.gson.Gson;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,9 @@ public class Administracao {
 
     private List<Funcionario> funcionarios;
 
-
+    public Administracao(){
+        this.funcionarios = new ArrayList<>();
+    }
 
     public List<Funcionario> getFuncionarios() {
 

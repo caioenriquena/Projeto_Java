@@ -4,6 +4,9 @@ import java.util.List;
 public class Atendimento {
 
     private List<Funcionario> funcionarios;
+    public Atendimento(){
+        this.funcionarios = new ArrayList<>();
+    }
 
     public List<Funcionario> getFuncionarios() {
         if(funcionarios == null){

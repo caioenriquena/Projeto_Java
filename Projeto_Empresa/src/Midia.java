@@ -3,6 +3,9 @@ import java.util.List;
 
 public class Midia{
     private List<Funcionario> funcionarios;
+    public Midia(){
+        this.funcionarios = new ArrayList<>();
+    }
 
     public List<Funcionario> getFuncionarios() {
         if(funcionarios == null){

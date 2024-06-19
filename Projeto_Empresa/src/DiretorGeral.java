@@ -4,6 +4,9 @@ import java.util.List;
 public class DiretorGeral {
 
     private List<Funcionario> funcionarios;
+    public DiretorGeral(){
+        this.funcionarios = new ArrayList<>();
+    }
 
     public List<Funcionario> getFuncionarios() {
         if(funcionarios == null){

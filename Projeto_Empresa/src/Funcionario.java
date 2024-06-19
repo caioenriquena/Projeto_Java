@@ -10,6 +10,19 @@ public class Funcionario {
     public Funcionario() {
     }
 
+    public Funcionario(String nome, String cpf, String endereco, String email, String telefone, String cargo, double salario, double bruto, String matricula, double bonus) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.email = email;
+        this.telefone = telefone;
+        this.cargo = cargo;
+        this.salario = salario;
+        this.bruto = bruto;
+        this.matricula = matricula;
+        this.bonus = bonus;
+    }
+
     public String getCargo() {
         return cargo;
     }
